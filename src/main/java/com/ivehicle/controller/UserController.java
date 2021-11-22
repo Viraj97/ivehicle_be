@@ -42,7 +42,7 @@ public class UserController {
             userDTO.setLastName(userEntity.getLastName());
         });
         if(loginDTO.getPassword().equals(userDTO.getPassword())) {
-            return ResponseEntity.ok(userRepository.save(userDTO));
+            return ResponseEntity.ok(userDTO);
         }
         return ResponseEntity.ok(null);
     }
