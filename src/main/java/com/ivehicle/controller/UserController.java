@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(maxAge = 3600, origins = "*", exposedHeaders = "**")
 public class UserController {
@@ -48,9 +50,10 @@ public class UserController {
     }
 
         @PostMapping("/findUserByEmail")
-    public ResponseEntity<?> hello(@RequestBody String userEmail) {
+    public ResponseEntity<?> findUserByEmail(@RequestBody LoginDTO loginDTO) {
         UserDTO userDTO = new UserDTO();
-        userRepository.findByEmail(userEmail).ifPresent(userEntity -> {
+            List<UserEntity> userList=userRepository.findUsersByEmail(loginDTO.getUsername());
+            userList.stream().findFirst().ifPresent(userEntity -> {
             userDTO.setUsername(userEntity.getUserName());
             userDTO.setPassword(userEntity.getPassWord());
             userDTO.setEmail(userEntity.getEmail());
