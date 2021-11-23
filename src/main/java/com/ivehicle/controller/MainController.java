@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 @RestController
-@CrossOrigin(maxAge = 3600, origins = "*", exposedHeaders = "**")
+@CrossOrigin(maxAge = 3600, origins = "*", exposedHeaders = "**")//CORS policy enabled
 public class MainController {
 
     @GetMapping("/search")

@@ -46,4 +46,17 @@ public class UserController {
         }
         return ResponseEntity.ok(null);
     }
+
+        @PostMapping("/findUserByEmail")
+    public ResponseEntity<?> hello(@RequestBody String userEmail) {
+        UserDTO userDTO = new UserDTO();
+        userRepository.findByEmail(loginDTO.getUsername()).ifPresent(userEntity -> {
+            userDTO.setUsername(userEntity.getUserName());
+            userDTO.setPassword(userEntity.getPassWord());
+            userDTO.setEmail(userEntity.getEmail());
+            userDTO.setFirstName(userEntity.getFirstName());
+            userDTO.setLastName(userEntity.getLastName());
+        });
+            return ResponseEntity.ok(userDTO);
+    }
 }
