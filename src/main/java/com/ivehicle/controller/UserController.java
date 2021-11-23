@@ -50,7 +50,7 @@ public class UserController {
         @PostMapping("/findUserByEmail")
     public ResponseEntity<?> hello(@RequestBody String userEmail) {
         UserDTO userDTO = new UserDTO();
-        userRepository.findByEmail(loginDTO.getUsername()).ifPresent(userEntity -> {
+        userRepository.findByEmail(userEmail).ifPresent(userEntity -> {
             userDTO.setUsername(userEntity.getUserName());
             userDTO.setPassword(userEntity.getPassWord());
             userDTO.setEmail(userEntity.getEmail());
